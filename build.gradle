@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+    id 'com.diffplug.spotless' version '6.23.3'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.squareup.okio:okio:3.6.0'
+    implementation 'land.soia:soia-kotlin-client:1.1.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+    testImplementation 'com.google.truth:truth:1.1.5'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+// Configure the application plugin so `./gradlew run` is available.
+// The `mainClass` below points to the main class with `public static void main(...)`.
+apply plugin: 'application'
+
+application {
+    mainClass = 'examples.Snippets'
+}
+
+spotless {
+    java {
+        target 'src/**/*.java'
+        targetExclude 'src/main/java/soiagen/**'
+        googleJavaFormat()
+    }
+}
+
+sourceCompatibility = '17'
+targetCompatibility = '17'

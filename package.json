@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "soiac": "soiac",
+    "soiac:watch": "soiac --watch",
+    "build": "npm run soiac && ./gradlew build",
+    "format": "./gradlew spotlessApply",
+    "run:snippets": "./gradlew run --args='examples.Snippets'"
+  },
+  "devDependencies": {
+    "soia-java-gen": "^0.0.1",
+    "soiac": "^1.0.51"
+  }
+}

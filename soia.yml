@@ -1,0 +1,9 @@
+srcDir: ./soia-src
+
+generators:
+  - mod: soia-java-gen
+    config: {}
+
+mirroredSoiagenDirs:
+  - path: src/main/java/soiagen
+    fileRegex: "\\.java$"

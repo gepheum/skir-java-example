@@ -1,0 +1,10 @@
+.gradle
+.idea
+.packages
+.vscode
+build
+node_modules
+pubspec.lock
+soiagen
+
+*.iml
