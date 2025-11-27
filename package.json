@@ -4,7 +4,9 @@
     "soiac:watch": "soiac --watch",
     "build": "npm run soiac && ./gradlew build",
     "format": "./gradlew spotlessApply",
-    "run:snippets": "./gradlew run --args='examples.Snippets'"
+    "run:snippets": "./gradlew run",
+    "run:start-service": "./gradlew run -PmainClass=examples.StartService",
+    "run:call-service": "./gradlew run -PmainClass=examples.CallService"
   },
   "devDependencies": {
     "soia-java-gen": "^0.0.1",

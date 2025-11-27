@@ -14,6 +14,7 @@ import soiagen.user.User;
 import soiagen.user.UserRegistry;
 
 public class Snippets {
+  @SuppressWarnings("unused")
   public static void main(String[] args) {
     // =========================================================================
     // STRUCT CLASSES
