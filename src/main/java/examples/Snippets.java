@@ -214,22 +214,6 @@ public class Snippets {
     assert reserializedJane.equals(jane);
 
     // =========================================================================
-    // KEYED LISTS
-    // =========================================================================
-
-    final UserRegistry userRegistry =
-        UserRegistry.builder().setUsers(List.of(john, jane, evilJohn)).build();
-
-    // find() returns the user with the given key (specified in the .soia file).
-    // In this example, the key is the user id.
-    // The first lookup runs in O(N) time, and the following lookups run in O(1)
-    // time.
-    assert userRegistry.users().findByKey(43) == jane;
-    // If multiple elements have the same key, the last one is returned.
-    assert userRegistry.users().findByKey(42) == evilJohn;
-    assert userRegistry.users().findByKey(100) == null;
-
-    // =========================================================================
     // CONSTANTS
     // =========================================================================
 
@@ -255,6 +239,27 @@ public class Snippets {
     //     }
     //   }
     // }
+
+    // =========================================================================
+    // KEYED LISTS
+    // =========================================================================
+
+    // In the .soia file:
+    //   struct UserRegistry {
+    //     users: [User|user_id];
+    //   }
+
+    final UserRegistry userRegistry =
+        UserRegistry.builder().setUsers(List.of(john, jane, evilJohn)).build();
+
+    // find() returns the user with the given key (specified in the .soia file).
+    // In this example, the key is the user id.
+    // The first lookup runs in O(N) time, and the following lookups run in O(1)
+    // time.
+    assert userRegistry.users().findByKey(43) == jane;
+    // If multiple elements have the same key, the last one is returned.
+    assert userRegistry.users().findByKey(42) == evilJohn;
+    assert userRegistry.users().findByKey(100) == null;
 
     // =========================================================================
     // FROZEN LISTS AND COPIES
@@ -327,5 +332,26 @@ public class Snippets {
     System.out.println(
         AllStringsToUpperCase.allStringsToUpperCase( //
             Constants.TARZAN, User.TYPE_DESCRIPTOR));
+    // {
+    //   "user_id": 123,
+    //   "name": "TARZAN",
+    //   "quote": "AAAAAAAAAAYAAAAAAAAAAYAAAAAAAAAA",
+    //   "pets": [
+    //     {
+    //       "name": "CHEETA",
+    //       "height_in_meters": 1.67,
+    //       "picture": "🐒"
+    //     }
+    //   ],
+    //   "subscription_status": {
+    //     "kind": "trial",
+    //     "value": {
+    //       "start_time": {
+    //         "unix_millis": 1743592409000,
+    //         "formatted": "2025-04-02T11:13:29Z"
+    //       }
+    //     }
+    //   }
+    // }
   }
 }
