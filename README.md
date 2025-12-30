@@ -13,6 +13,7 @@ cd skir-java-example
 # Run Skir-to-Java codegen
 npx skir gen
 
+./gradlew build
 ./gradlew run
 ```
 
