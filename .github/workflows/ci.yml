@@ -23,7 +23,7 @@ jobs:
       uses: gradle/actions/setup-gradle@v3
 
     - name: Check Java code formatting
-      run: ./gradlew ktlintFormat
+      run: ./gradlew spotlessCheck
 
     - name: Check Skir code formatting
       run: npx skir format --ci
