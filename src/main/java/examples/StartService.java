@@ -9,15 +9,15 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import soiagen.service.AddUserRequest;
-import soiagen.service.AddUserResponse;
-import soiagen.service.GetUserRequest;
-import soiagen.service.GetUserResponse;
-import soiagen.service.Methods;
-import soiagen.user.User;
+import skirout.service.AddUserRequest;
+import skirout.service.AddUserResponse;
+import skirout.service.GetUserRequest;
+import skirout.service.GetUserResponse;
+import skirout.service.Methods;
+import skirout.user.User;
 
 /**
- * Starts a Soia service on http://localhost:8787/myapi
+ * Starts a Skir service on http://localhost:8787/myapi
  *
  * <p>Run with: ./gradlew run -PmainClass=examples.StartService
  *
@@ -65,9 +65,9 @@ public class StartService {
   public static void main(String[] args) throws IOException {
     final ServiceImpl serviceImpl = new ServiceImpl();
 
-    // Build the Soia service with custom metadata
-    final var soiaService =
-        land.soia.service.Service.Companion.builder(
+    // Build the Skir service with custom metadata
+    final var skirService =
+        build.skir.service.Service.Companion.builder(
                 (httpHeaders) -> {
                   Map<String, String> requestHeaders = new HashMap<>();
                   httpHeaders
@@ -125,14 +125,14 @@ public class StartService {
                 java.net.http.HttpHeaders.of(exchange.getRequestHeaders(), (name, value) -> true);
 
             // Handle the request (using runBlocking since handleRequest is a suspend function)
-            final land.soia.service.Service.RawResponse rawResponse =
+            final build.skir.service.Service.RawResponse rawResponse =
                 kotlinx.coroutines.BuildersKt.runBlocking(
                     kotlin.coroutines.EmptyCoroutineContext.INSTANCE,
                     (scope, continuation) ->
-                        soiaService.handleRequest(
+                        skirService.handleRequest(
                             requestBody,
                             httpHeaders,
-                            land.soia.UnrecognizedFieldsPolicy.KEEP,
+                            build.skir.UnrecognizedValuesPolicy.KEEP,
                             continuation));
 
             // Send response

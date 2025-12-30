@@ -1,17 +1,17 @@
 package examples;
 
+import build.skir.JsonFlavor;
+import build.skir.Serializer;
+import build.skir.reflection.StructDescriptor;
+import build.skir.reflection.TypeDescriptor;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
-import land.soia.JsonFlavor;
-import land.soia.Serializer;
-import land.soia.reflection.StructDescriptor;
-import land.soia.reflection.TypeDescriptor;
-import soiagen.user.Constants;
-import soiagen.user.SubscriptionStatus;
-import soiagen.user.User;
-import soiagen.user.UserRegistry;
+import skirout.user.Constants;
+import skirout.user.SubscriptionStatus;
+import skirout.user.User;
+import skirout.user.UserRegistry;
 
 public class Snippets {
   @SuppressWarnings("unused")
@@ -20,8 +20,8 @@ public class Snippets {
     // STRUCT CLASSES
     // =========================================================================
 
-    // Soia generates a deeply immutable Java class for every struct in the
-    // .soia file.
+    // Skir generates a deeply immutable Java class for every struct in the
+    // .skir file.
 
     final User john =
         User.builder()
@@ -75,13 +75,13 @@ public class Snippets {
     // ENUM CLASSES
     // =========================================================================
 
-    // Soia generates a deeply immutable Java class for every enum in the .soia
+    // Skir generates a deeply immutable Java class for every enum in the .skir
     // file. This class is *not* a Java enum, although the syntax for referring
     // to constants is similar.
     final List<SubscriptionStatus> someStatuses =
         List.of(
-            // The UNKNOWN constant is present in all Soia enums even if it is not
-            // declared in the .soia file.
+            // The UNKNOWN constant is present in all Skir enums even if it is not
+            // declared in the .skir file.
             SubscriptionStatus.UNKNOWN,
             SubscriptionStatus.FREE,
             SubscriptionStatus.PREMIUM,
@@ -184,7 +184,7 @@ public class Snippets {
     // }
 
     // The dense JSON flavor is the flavor you should pick if you intend to
-    // deserialize the value in the future. Soia allows fields to be renamed,
+    // deserialize the value in the future. Skir allows fields to be renamed,
     // and because field names are not part of the dense JSON, renaming a field
     // does not prevent you from deserializing the value.
     // You should pick the readable flavor mostly for debugging purposes.
@@ -244,7 +244,7 @@ public class Snippets {
     // KEYED LISTS
     // =========================================================================
 
-    // In the .soia file:
+    // In the .skir file:
     //   struct UserRegistry {
     //     users: [User|user_id];
     //   }
@@ -252,7 +252,7 @@ public class Snippets {
     final UserRegistry userRegistry =
         UserRegistry.builder().setUsers(List.of(john, jane, evilJohn)).build();
 
-    // find() returns the user with the given key (specified in the .soia file).
+    // find() returns the user with the given key (specified in the .skir file).
     // In this example, the key is the user id.
     // The first lookup runs in O(N) time, and the following lookups run in O(1)
     // time.
@@ -265,8 +265,8 @@ public class Snippets {
     // FROZEN LISTS AND COPIES
     // =========================================================================
 
-    // Since all Soia objects are deeply immutable, all lists contained in a
-    // Soia object are also deeply immutable.
+    // Since all Skir objects are deeply immutable, all lists contained in a
+    // Skir object are also deeply immutable.
     // This section helps understand when lists are copied and when they are
     // not.
 
@@ -288,7 +288,7 @@ public class Snippets {
         User.partialBuilder()
             .setName("Jade")
             .setPets(pets)
-            // 'pets' is mutable, so Soia makes an immutable shallow copy of it
+            // 'pets' is mutable, so Skir makes an immutable shallow copy of it
             .build();
 
     assert pets.equals(jade.pets());
@@ -298,7 +298,7 @@ public class Snippets {
         User.partialBuilder()
             .setName("Jack")
             .setPets(jade.pets())
-            // The list is already immutable, so Soia does not make a copy
+            // The list is already immutable, so Skir does not make a copy
             .build();
 
     assert jack.pets() == jade.pets();
@@ -307,7 +307,7 @@ public class Snippets {
     // REFLECTION
     // =========================================================================
 
-    // Reflection allows you to inspect a soia type at runtime.
+    // Reflection allows you to inspect a skir type at runtime.
 
     System.out.println(
         User.TYPE_DESCRIPTOR //
@@ -326,9 +326,9 @@ public class Snippets {
     assert ((StructDescriptor) typeDescriptor).getFields().size() == 5;
 
     // The 'allStringsToUpperCase' function uses reflection to convert all the
-    // strings contained in a given Soia value to upper case.
+    // strings contained in a given Skir value to upper case.
     // See the implementation at
-    // https://github.com/gepheum/soia-java-example/blob/main/src/main/java/examples/AllStringsToUpperCase.java
+    // https://github.com/gepheum/skir-java-example/blob/main/src/main/java/examples/AllStringsToUpperCase.java
     System.out.println(
         AllStringsToUpperCase.allStringsToUpperCase( //
             Constants.TARZAN, User.TYPE_DESCRIPTOR));

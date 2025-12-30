@@ -1,21 +1,21 @@
 package examples;
 
+import build.skir.service.ServiceClient;
 import java.net.http.HttpClient;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import land.soia.service.ServiceClient;
-import soiagen.service.AddUserRequest;
-import soiagen.service.GetUserRequest;
-import soiagen.service.GetUserResponse;
-import soiagen.service.Methods;
-import soiagen.user.Constants;
-import soiagen.user.SubscriptionStatus;
-import soiagen.user.User;
+import skirout.service.AddUserRequest;
+import skirout.service.GetUserRequest;
+import skirout.service.GetUserResponse;
+import skirout.service.Methods;
+import skirout.user.Constants;
+import skirout.user.SubscriptionStatus;
+import skirout.user.User;
 
 /**
- * Sends RPCs to a Soia service. See StartService.java for how to start one.
+ * Sends RPCs to a Skir service. See StartService.java for how to start one.
  *
  * <p>Run with: ./gradlew run -PmainClass=examples.CallService
  *

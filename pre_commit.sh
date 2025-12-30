@@ -2,6 +2,6 @@
 
 set -e
 
-npm i
-npm run format
-npm run build
+./gradlew spotlessApply
+npx skir gen
+./gradlew run
