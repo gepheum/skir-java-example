@@ -10,6 +10,7 @@ struct User {
     picture: string;
   }
   pets: [Pet];
+
   subscription_status: SubscriptionStatus;
 }
 
