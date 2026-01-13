@@ -1,5 +1,7 @@
 package examples;
 
+import build.skir.service.Service;
+import jakarta.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
@@ -8,7 +10,12 @@ import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
-
+import kotlin.coroutines.Continuation;
+import kotlin.coroutines.EmptyCoroutineContext;
+import kotlinx.coroutines.CoroutineScopeKt;
+import kotlinx.coroutines.CoroutineStart;
+import kotlinx.coroutines.Dispatchers;
+import kotlinx.coroutines.future.FutureKt;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -17,15 +24,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import build.skir.service.Service;
-import jakarta.servlet.http.HttpServletRequest;
-import kotlin.coroutines.Continuation;
-import kotlin.coroutines.EmptyCoroutineContext;
-import kotlinx.coroutines.CoroutineScopeKt;
-import kotlinx.coroutines.CoroutineStart;
-import kotlinx.coroutines.Dispatchers;
-import kotlinx.coroutines.future.FutureKt;
 import skirout.service.AddUserRequest;
 import skirout.service.AddUserResponse;
 import skirout.service.GetUserRequest;
@@ -42,10 +40,7 @@ import skirout.user.User;
  */
 @SpringBootApplication
 public class StartService {
-  /**
-   * Custom data class containing relevant information extracted from the HTTP
-   * request headers.
-   */
+  /** Custom data class containing relevant information extracted from the HTTP request headers. */
   public static class RequestMetadata {
     // Add fields here.
 
