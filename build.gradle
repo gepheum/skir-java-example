@@ -1,6 +1,8 @@
 plugins {
     id 'java'
     id 'com.diffplug.spotless' version '6.23.3'
+    id 'org.springframework.boot' version '3.2.1'
+    id 'io.spring.dependency-management' version '1.1.4'
 }
 
 group = 'org.example'
@@ -11,9 +13,11 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'com.squareup.okio:okio:3.6.0'
-    implementation 'build.skir:skir-client:0.1.0'
+    implementation 'build.skir:skir-client:1.0.1'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.7.3'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
     testImplementation 'com.google.truth:truth:1.1.5'
 }
