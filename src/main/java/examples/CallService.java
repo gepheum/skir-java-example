@@ -1,7 +1,6 @@
 package examples;
 
 import build.skir.service.ServiceClient;
-import java.net.http.HttpClient;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
@@ -23,8 +22,7 @@ import skirout.user.User;
  */
 public class CallService {
   public static void main(String[] args) throws Exception {
-    final ServiceClient serviceClient =
-        new ServiceClient("http://localhost:8787/myapi", Map.of(), HttpClient.newHttpClient());
+    final ServiceClient serviceClient = new ServiceClient("http://localhost:8787/myapi");
 
     System.out.println();
     System.out.println("About to add 2 users: John Doe and Tarzan");
